@@ -9,8 +9,11 @@ require('./models/User');
 require('./models/Blog');
 require('./services/passport');
 
-mongoose.Promise = global.Promise;
-mongoose.connect(keys.mongoURI, { useMongoClient: true });
+// mongoose.Promise = global.Promise;
+mongoose
+.connect(keys.mongoURI, { useNewUrlParser: true })
+.then(() => console.log('Connected to db'))
+.catch(err => console.log('Error in connection: ', err));
 
 const app = express();
 
